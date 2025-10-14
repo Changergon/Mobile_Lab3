@@ -1,11 +1,11 @@
-package com.example.lab2
+package com.example.lab3
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.lab2.databinding.ItemHomeBinding // ИЗМЕНЕНО
+import com.example.lab3.databinding.ItemHomeBinding
 
 class HomeAdapter(private val items: List<HomeItem>) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
@@ -36,8 +36,8 @@ class HomeAdapter(private val items: List<HomeItem>) : RecyclerView.Adapter<Home
                 binding.itemImage.visibility = View.VISIBLE
                 Glide.with(binding.itemImage.context)
                     .load(item.imageUrl)
-                    .placeholder(R.drawable.ic_launcher_background) // Рекомендую заменить на кастомные плейсхолдеры
-                    .error(R.drawable.ic_launcher_foreground)      // Рекомендую заменить на кастомные плейсхолдеры
+                    .placeholder(R.drawable.ic_launcher_background)
+                    .error(R.drawable.ic_launcher_foreground)
                     .into(binding.itemImage)
             } else {
                 binding.itemImage.visibility = View.GONE

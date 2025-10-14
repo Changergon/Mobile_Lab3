@@ -1,4 +1,4 @@
-package com.example.lab2
+package com.example.lab3
 
 import android.os.Bundle
 import android.util.Log

@@ -1,29 +1,41 @@
-package com.example.lab2
+package com.example.lab3
 
 import android.os.Bundle
-// AppCompatActivity больше не нужен напрямую
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.lab2.databinding.ActivityHomeBinding
+import com.example.lab3.databinding.FragmentHomeBinding
 
-class HomeActivity : BaseActivity() { // ИЗМЕНЕНО
+class HomeFragment : Fragment() {
 
-    private lateinit var binding: ActivityHomeBinding
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
+
     private lateinit var homeAdapter: HomeAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState) // Вызов super.onCreate() из BaseActivity выполнит логирование
-        binding = ActivityHomeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        setSupportActionBar(binding.topAppBar)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        (activity as? AppCompatActivity)?.setSupportActionBar(binding.topAppBar)
 
         setupRecyclerView()
         loadDummyData()
     }
 
     private fun setupRecyclerView() {
-        binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        homeAdapter = HomeAdapter(emptyList()) // Классы HomeAdapter и HomeItem должны быть в пакете com.example.lab2
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        homeAdapter = HomeAdapter(emptyList())
         binding.recyclerView.adapter = homeAdapter
     }
 
@@ -38,5 +50,10 @@ class HomeActivity : BaseActivity() { // ИЗМЕНЕНО
         )
         homeAdapter = HomeAdapter(dummyItems)
         binding.recyclerView.adapter = homeAdapter
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

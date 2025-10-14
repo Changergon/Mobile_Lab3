@@ -1,16 +1,16 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    id("org.jetbrains.kotlin.kapt") // Добавил kapt, так как он, вероятно, понадобится для Glide
-    id("kotlin-parcelize") // Добавлено для Parcelable
+    id("org.jetbrains.kotlin.kapt")
+    id("kotlin-parcelize")
 }
 
 android {
-    namespace = "com.example.lab2"
+    namespace = "com.example.lab3"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.lab2"
+        applicationId = "com.example.lab3"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
@@ -48,10 +48,14 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    
+    // ЗАВИСИМОСТЬ ДЛЯ ФРАГМЕНТОВ KTX
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-    // Добавил Glide, так как он используется в HomeAdapter
+    
     implementation("com.github.bumptech.glide:glide:4.16.0")
     kapt("com.github.bumptech.glide:compiler:4.16.0")
 }
