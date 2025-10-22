@@ -24,7 +24,7 @@ class OnboardFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.nextButton.setOnClickListener {
-            (activity as? MainActivity)?.navigateTo(SignInFragment())
+            (activity as? MainActivity)?.navigateTo(SignInFragment(), true)
         }
     }
 

@@ -53,11 +53,12 @@ class SignUpFragment : Fragment() {
                 setFragmentResult("requestKey", bundle)
             }
             
-            parentFragmentManager.popBackStack()
+            // Возвращаемся к SignInFragment, не добавляя его в бэкстек
+            (activity as? MainActivity)?.navigateTo(SignInFragment(), false)
         }
 
         binding.signInText.setOnClickListener {
-            parentFragmentManager.popBackStack()
+            (activity as? MainActivity)?.navigateTo(SignInFragment(), false)
         }
     }
     

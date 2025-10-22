@@ -76,14 +76,14 @@ class SignInFragment : Fragment() {
 
             if (registeredUser != null && email == registeredUser?.email && password == registeredUser?.password) {
                 Toast.makeText(requireContext(), "Вход успешен!", Toast.LENGTH_SHORT).show()
-                (activity as? MainActivity)?.navigateTo(HomeFragment(), false)
+                (activity as? MainActivity)?.navigateTo(HomeFragment(), true)
             } else {
                 Toast.makeText(requireContext(), "Неверный email или пароль", Toast.LENGTH_SHORT).show()
             }
         }
 
         binding.signUpText.setOnClickListener {
-            (activity as? MainActivity)?.navigateTo(SignUpFragment())
+            (activity as? MainActivity)?.navigateTo(SignUpFragment(), false)
         }
     }
 
